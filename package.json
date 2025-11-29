@@ -1,0 +1,23 @@
+{
+  "name": "app.js",
+  "version": "1.0.0",
+  "description": "Список заметок (Notes App)",
+  "homepage": "https://github.com/LevPelihov/express-hw-pelihov-level2#readme",
+  "bugs": {
+    "url": "https://github.com/LevPelihov/express-hw-pelihov-level2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LevPelihov/express-hw-pelihov-level2.git"
+  },
+  "license": "ISC",
+  "author": "Lev Pelihov",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
