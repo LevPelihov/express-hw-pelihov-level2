@@ -9,7 +9,12 @@ const store = {
         return [...notes]
     },
     getNoteById(id) {
-        return notes.find(note => note.id === parseInt(id))
+        const note = notes.find(note => note.id === parseInt(id))
+        if (!note) {
+            throw new Error("Note по id не найден");
+        }else{
+            return note
+        }
     },
     createNote(note) {
         
@@ -33,11 +38,53 @@ const store = {
             id: noteId,
             title: note.title,
             content: note.content,
-            createdAt: note.createdAt || new Date().toISOString()
+            createdAt: note.createdAt || new Date()
         };
         
         notes.push(newNote);
         return newNote;
+    }, 
+    patchNote (id, note){
+        const OldNote = this.getNoteById(id)
+        if (note.id && note.id !== parseInt(id)) {
+            throw new Error("Вы не можете менять id");
+        }
+        const ind = notes.findIndex(note => note.id == parseInt(id))
+        const updatedNote = {
+            ...OldNote,  
+            ...note, 
+            id: parseInt(id)
+        };
+        notes[ind] = updatedNote
+        return updatedNote
+
+    },
+    updateNote(id, note){
+        const OldNote = this.getNoteById(id)
+        if (note.id && note.id !== parseInt(id)) {
+            throw new Error("Вы не можете менять id");
+        }
+        if (!note.title) {
+            throw new Error("Вы не указали Title");
+        }
+        const ind = notes.findIndex(note => note.id == parseInt(id))
+        const updatedNote = {
+            id: parseInt(id),
+            title: note.title,
+            content: note.content || "",
+            createdAt: note.createdAt || new Date()
+
+        };
+        notes[ind] = updatedNote
+        return updatedNote
+    },
+    deleteNote(id){
+        const OldNote = this.getNoteById(id)
+        const ind = notes.findIndex(note => note.id == parseInt(id))
+        let deleted = notes.splice(ind, 1);
+        return deleted;
+
+    
     }
 }
 

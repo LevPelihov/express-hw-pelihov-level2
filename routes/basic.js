@@ -9,6 +9,8 @@ router.get("/", (request, response) => {
 router.get("/notes",  UserControlers.getAllNotes)
 router.get("/notes/:id",  UserControlers.getNoteById)
 router.post("/notes",  UserControlers.createNote)
-router.put("/notes",  UserControlers.createNote)
+router.put("/notes/:id",  UserControlers.updateNote)
+router.patch("/notes/:id",  UserControlers.patchNote)
+router.delete("/notes/:id",  UserControlers.deleteNote)
 
 module.exports = router
