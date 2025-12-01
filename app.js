@@ -26,7 +26,7 @@ app.use((request, response, next) => {
 app.use("/", routes);
 
 app.use((request, response, next) => {
-    response.status(404).json({ message: "Not Found" });
+    response.status(404).json({ error: "Not Found" });
 });
 
 const PORT = 3000
