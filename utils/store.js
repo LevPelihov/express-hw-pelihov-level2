@@ -18,12 +18,18 @@ const store = {
     },
     createNote(note) {
         
-        if (!note.title) {
+        if (!note.title) 
             throw new Error("В вашем note нет Title");
-        }
-        if (!note.content) {
+        
+        if (!note.content) 
             throw new Error("В вашем note нет Content");
-        }
+        
+        if (!(note.title.length >= 1 && note.title.length <= 100)) 
+            throw new Error("В вашем Title должно быть от 1-100 символов");
+        
+        if (!(note.content.length >= 1 && note.content.length <= 500)) 
+            throw new Error("В вашем Content должно быть от 1-500 символов");
+        
         
         let noteId = note.id;
         
@@ -46,9 +52,20 @@ const store = {
     }, 
     patchNote (id, note){
         const OldNote = this.getNoteById(id)
-        if (note.id && note.id !== parseInt(id)) {
+
+        if (note.id && note.id !== parseInt(id)) 
             throw new Error("Вы не можете менять id");
-        }
+        
+        if (note.title && !(note.title.length >= 1 && note.title.length <= 100)) 
+            throw new Error("В вашем Title должно быть от 1-100 символов");
+        
+        
+        if (note.content && !(note.content.length >= 1 && note.content.length <= 500)) 
+            throw new Error("В вашем Content должно быть от 1-500 символов");
+        
+        
+        
+        
         const ind = notes.findIndex(note => note.id == parseInt(id))
         const updatedNote = {
             ...OldNote,  
@@ -61,12 +78,19 @@ const store = {
     },
     updateNote(id, note){
         const OldNote = this.getNoteById(id)
-        if (note.id && note.id !== parseInt(id)) {
+        
+        if (note.id && note.id !== parseInt(id)) 
             throw new Error("Вы не можете менять id");
-        }
-        if (!note.title) {
+        
+        if (!note.title) 
             throw new Error("Вы не указали Title");
-        }
+        
+        if (note.title && !(note.title.length >= 1 && note.title.length <= 100)) 
+            throw new Error("В вашем Title должно быть от 1-100 символов");
+        
+        if (note.content && !(note.content.length >= 1 && note.content.length <= 500)) 
+            throw new Error("В вашем Content должно быть от 1-500 символов");
+
         const ind = notes.findIndex(note => note.id == parseInt(id))
         const updatedNote = {
             id: parseInt(id),
