@@ -78,7 +78,7 @@ const store = {
     },
     updateNote(id, note){
         const OldNote = this.getNoteById(id)
-        
+
         if (note.id && note.id !== parseInt(id)) 
             throw new Error("Вы не можете менять id");
         
@@ -95,7 +95,7 @@ const store = {
         const updatedNote = {
             id: parseInt(id),
             title: note.title,
-            content: note.content || "",
+            content: note.content || " ",
             createdAt: note.createdAt || new Date()
 
         };
